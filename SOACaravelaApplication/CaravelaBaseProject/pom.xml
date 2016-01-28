@@ -40,9 +40,9 @@
         <composite.name>${project.artifactId}</composite.name>
         <composite.revision>1.0</composite.revision>
         <composite.partition>default</composite.partition>        
-        <serverUrl>${oracleServerUrl}</serverUrl>        
-        <user>${oracleUsername}</user>
-        <password>${oraclePassword}</password>
+        <serverUrl>http://localhost:7101</serverUrl>
+        <user>weblogic</user>
+        <password>welcome1</password>
         <overwrite>true</overwrite>
         <forceDefault>true</forceDefault>
         <regenerateRulebase>false</regenerateRulebase>
