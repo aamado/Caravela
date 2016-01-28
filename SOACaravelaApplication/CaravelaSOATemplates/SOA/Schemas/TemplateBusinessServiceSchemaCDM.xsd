@@ -1,0 +1,31 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.novabase.pt/Caravela/Oracle/CDM"  xmlns:ns1="http://namespace.BusinessServiceSchema" targetNamespace="http://www.novabase.pt/Caravela/Oracle/CDM" xmlns:ct="http://www.novabase.pt/Caravela/Oracle/CommonTypes" elementFormDefault="qualified">
+    <!--<xsd:import namespace="http://www.commonCaravelaCDM.novabase.pt/CommonTypes"
+                 schemaLocation="oramds:/apps/Schemas/CommonCaravelaCDM.xsd"/>-->
+    <xsd:import namespace="http://www.novabase.pt/Caravela/Oracle/CommonTypes" schemaLocation="../../../CommonProject/SOA/Schemas/CommonCaravelaCDM.xsd"/>
+    <xsd:import namespace="http://namespace.BusinessServiceSchema"
+                schemaLocation="TemplateBusinessServiceSchema.xsd"/>
+    <xsd:element name="Request">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="RequestCDM" type="ct:RequestCDMType"/>
+                <xsd:element name="BusinessApplicationRequest" type="ns1:RequestBusinessService"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Response">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ResponseCDM" type="ct:ResponseCDMType"/>
+                <xsd:element name="BusinessApplicationResponse" type="ns1:ResponseBusinessService"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Fault">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="FaultCDM" type="ct:FaultStatusType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+</xsd:schema>
