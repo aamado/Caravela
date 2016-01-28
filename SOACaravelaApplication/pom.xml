@@ -5,11 +5,17 @@
     <artifactId>SOACaravelaApplication</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
+    
+    <parent>
+        <groupId>com.oracle.soa</groupId>
+        <artifactId>sar-common</artifactId>
+        <version>12.1.3-0-0</version>
+    </parent>
+    
     <modules>
         <!-- Add project modules -->
-    	<module>ProcessSelector</module>
-    	<module>Project1</module>
     	<module>CaravelaBaseProject</module>
-    <module>process.selector</module>
+    <module>NotificationEngine</module>
+    <module>ProcessSelect</module>
   </modules>
 </project>

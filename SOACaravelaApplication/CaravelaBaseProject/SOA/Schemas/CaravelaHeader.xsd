@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:pst="http://www.novabase.pt/Caravela/Oracle/Header"
+            targetNamespace="http://www.novabase.pt/Caravela/Oracle/Header"
+            elementFormDefault="qualified">
+   
+   
+   <xsd:element name="HeaderMessage">
+      <xsd:complexType>
+        <xsd:sequence>
+          <xsd:element name="version" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+          <xsd:element name="timestamp" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+          <xsd:element name="transactionId" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+          <xsd:element name="transactionType" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+          <xsd:element name="source" type="xsd:string" maxOccurs="1" minOccurs="1"/>
+        </xsd:sequence>
+      </xsd:complexType>   
+   </xsd:element>
+   
+</xsd:schema>
+
