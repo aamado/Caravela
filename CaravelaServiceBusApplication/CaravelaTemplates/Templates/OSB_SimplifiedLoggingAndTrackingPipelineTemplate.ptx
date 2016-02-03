@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:templateEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/alert/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <!--<con:binding type="Any XML"/>-->
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:AnyWsdlSoapBindingType"/>
+    </con:coreEntry>
+    <con:router errorHandler="error-7f000001.N345a6d0c.0.14f6457c7d0.N7f0c">
+        <con:pipeline type="error" name="error-7f000001.N345a6d0c.0.14f6457c7d0.N7f0c">
+            <con:stage id="_StageId-7f000001.N345a6d0c.0.14f6457c7d0.N7f0b" name="Exception Management">
+                <con:context/>
+                <con:actions>
+                    <con4:alert>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7f91</con2:id>
+                        <con4:destination ref="CaravelaTemplates/AlertDestinations/AD_ErrorHandler"/>
+                        <con4:severity>critical</con4:severity>
+                        <con4:payload>
+                            <con2:xqueryText>$fault</con2:xqueryText>
+                        </con4:payload>
+                    </con4:alert>
+                    <con3:report>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7f5e</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$fault</con2:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>ECID</con3:key>
+                            <con3:varName>report</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./ecid</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                    <con3:report>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7f29</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$header</con2:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>ECID</con3:key>
+                            <con3:varName>report</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./ecid</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                    <con3:report>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7f26</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>ECID</con3:key>
+                            <con3:varName>report</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./ecid</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                    <con3:log>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7ef3</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$header</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                    <con3:log>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7eef</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$inbound</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                    <con3:log>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7eec</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$outbound</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                    <con3:log>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7ee9</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                    <con3:log>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7ee6</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$fault</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                </con:actions>
+            </con:stage>
+            <con:placeholder-node id="PlaceholderID_7f000001.N345a6d0c.0.14f6457c7d0.N7f0a" name="ErrorHandlingCustomisedStage_1">
+                <con:comment>To be edited with Error handling extra activites</con:comment>
+            </con:placeholder-node>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000001.N345a6d0c.0.14f6457c7d0.N7ed6">
+            <con:stage id="_StageId-7f000001.N345a6d0c.0.14f6457c7d0.N7ed4" name="RequestTrackingStage">
+                <con:context/>
+                <con:actions>
+                    <con1:javaCallout varName="ecid">
+                        <con2:id>_ActionId-7f000001.N345a6d0c.0.14f6457c7d0.N7e66</con2:id>
+                        <con1:archive ref="CaravelaTemplates/wls-api"/>
+                        <con1:className>weblogic.diagnostics.context.DiagnosticContextHelper</con1:className>
+                        <con1:method>public static java.lang.String getContextId()</con1:method>
+                        <con1:return-param-as-ref>false</con1:return-param-as-ref>
+                    </con1:javaCallout>
+                    <con1:assign varName="report">
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7ffe</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>&lt;report>
+  &lt;ecid>$ecid&lt;/ecid>
+&lt;/report></con2:xqueryText>
+                        </con1:expr>
+                    </con1:assign>
+                    <con1:assign varName="operationSH">
+                        <con2:id>_ActionId-N3f5754ff.1bb6aa98.0.150a9cf5391.N7f91</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>$inbound/ctx:service/ctx:operation/text()</con2:xqueryText>
+                        </con1:expr>
+                    </con1:assign>
+                    <con1:replace varName="report" contents-only="true">
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7ffb</con2:id>
+                        <con1:location>
+                            <con2:xpathText>./ecid</con2:xpathText>
+                        </con1:location>
+                        <con1:expr>
+                            <con2:xqueryText>$ecid</con2:xqueryText>
+                        </con1:expr>
+                    </con1:replace>
+                    <con3:report>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7ff8</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>ECID</con3:key>
+                            <con3:varName>report</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./ecid</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                </con:actions>
+            </con:stage>
+            <con:placeholder-node id="PlaceholderID_7f000001.N345a6d0c.0.14f6457c7d0.N7ed1" name="RequestCustomisedStage_1">
+                <con:comment>To be edited with service needs request data</con:comment>
+            </con:placeholder-node>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000001.N345a6d0c.0.14f6457c7d0.N7ed5">
+            <con:stage id="_StageId-7f000001.N345a6d0c.0.14f6457c7d0.N7ed3" name="ResponseTrackingStage">
+                <con:context/>
+                <con:actions>
+                    <con3:report>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7fc4</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>fn:concat($header, $body)</con2:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>ECID</con3:key>
+                            <con3:varName>report</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./ecid</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                </con:actions>
+            </con:stage>
+            <con:placeholder-node id="PlaceholderID_7f000001.N345a6d0c.0.14f6457c7d0.N7ed0" name="ResponseCustomisedStage_1">
+                <con:comment>To be edited with service needs request data</con:comment>
+            </con:placeholder-node>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="MainPipelinePairNode">
+                <con:request>request-7f000001.N345a6d0c.0.14f6457c7d0.N7ed6</con:request>
+                <con:response>response-7f000001.N345a6d0c.0.14f6457c7d0.N7ed5</con:response>
+            </con:pipeline-node>
+            <con:placeholder-node id="PlaceholderID_7f000001.N345a6d0c.0.14f6457c7d0.N7ecc" name="RoutingNodes">
+                <con:comment>To be edited with providing business service details</con:comment>
+            </con:placeholder-node>
+        </con:flow>
+        <con:shared-variables>
+            <con:variable>ecid</con:variable>
+            <con:variable>operationSH</con:variable>
+            <con:variable>originalBodyBackupSH</con:variable>
+            <con:variable>param_operation_SH</con:variable>
+            <con:variable>param_processURI_SH</con:variable>
+            <con:variable>param_integrationPattern_SH</con:variable>
+            <con:variable>param_source_SH</con:variable>
+            <con:variable>param_target_SH</con:variable>
+            <con:variable>param_Domain_SH</con:variable>
+            <con:variable>param_Process_SH</con:variable>
+            <con:variable>param_Step_SH</con:variable>
+            <con:variable>param_Message_SH</con:variable>
+            <con:variable>param_DomainFault_SH</con:variable>
+        </con:shared-variables>
+    </con:router>
+</con:templateEntry>

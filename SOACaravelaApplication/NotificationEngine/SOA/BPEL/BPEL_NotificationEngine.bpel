@@ -1,0 +1,114 @@
+<?xml version = "1.0" encoding = "UTF-8" ?>
+<!--
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  Oracle JDeveloper BPEL Designer 
+  
+  Created: Wed Feb 03 10:59:02 GMT 2016
+  Author:  NB19878
+  Type: BPEL 2.0 Process
+  Purpose: Empty BPEL Process
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+-->
+<process name="BPEL_NotificationEngine"
+               targetNamespace="http://www.novabase.pt/Caravela/Oracle/NotificationEngine"
+               xmlns="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+               xmlns:client="http://www.novabase.pt/Caravela/Oracle/NotificationEngine"
+               xmlns:ora="http://schemas.oracle.com/xpath/extension"
+               xmlns:bpel="http://docs.oasis-open.org/wsbpel/2.0/process/executable"
+         xmlns:bpelx="http://schemas.oracle.com/bpel/extension"
+         xmlns:ns1="http://xmlns.oracle.com/ias/pcbpel/NotificationService"
+         xmlns:ui="http://xmlns.oracle.com/soa/designer">
+
+  <!-- 
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+     ORCHESTRATION LOGIC                                               
+     Set of activities coordinating the flow of messages across the    
+     services integrated within this business process                  
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+  -->
+  <import namespace="http://xmlns.oracle.com/ias/pcbpel/NotificationService"
+          location="oramds:/soa/shared/workflow/NotificationService.wsdl"
+          importType="http://schemas.xmlsoap.org/wsdl/" ui:processWSDL="true"/>
+  <partnerLinks>
+    <partnerLink name="NotificationService3" partnerLinkType="ns1:NotificationServiceLink"
+                 partnerRole="NotificationServiceProvider"/>
+  </partnerLinks>
+  <sequence name="main">
+    <scope name="Email1">
+      <bpelx:annotation>
+        <bpelx:pattern patternName="bpelx:email"></bpelx:pattern>
+      </bpelx:annotation>
+      <variables>
+        <variable name="varNotificationReq" messageType="ns1:EmailNotificationRequest"/>
+        <variable name="varNotificationResponse" messageType="ns1:ArrayOfResponse"/>
+        <variable name="NotificationServiceFaultVariable" messageType="ns1:NotificationServiceErrorMessage"/>
+      </variables>
+      <sequence name="Sequence3">
+        <assign name="EmailParamsAssign">
+          <copy>
+            <from>string('Default')</from>
+            <to variable="varNotificationReq" part="EmailPayload"><query>ns1:FromAccountName</query></to>
+          </copy>
+          <copy>
+            <from>string('')</from>
+            <to variable="varNotificationReq" part="EmailPayload"><query>ns1:Bcc</query></to>
+          </copy>
+          <copy>
+            <from>string('')</from>
+            <to variable="varNotificationReq" part="EmailPayload"><query>ns1:Cc</query></to>
+          </copy>
+          <copy>
+            <from>string('')</from>
+            <to variable="varNotificationReq" part="EmailPayload"><query>ns1:ReplyToAddress</query></to>
+          </copy>
+          <copy>
+            <from>string('teste')</from>
+            <to variable="varNotificationReq" part="EmailPayload"><query>ns1:Subject</query></to>
+          </copy>
+          <copy>
+            <from>string('a.ccj.amado@gmail.com')</from>
+            <to variable="varNotificationReq" part="EmailPayload"><query>ns1:To</query></to>
+          </copy>
+          <copy>
+            <from>string('email automático')</from>
+            <to variable="varNotificationReq" part="EmailPayload"><query>ns1:Content/ns1:ContentBody</query></to>
+          </copy>
+          <copy>
+            <from>string('text/html; charset=UTF-8')</from>
+            <to variable="varNotificationReq" part="EmailPayload"><query>ns1:Content/ns1:MimeType</query></to>
+          </copy>
+        </assign>
+        <invoke name="InvokeNotificationService" portType="ns1:NotificationService" partnerLink="NotificationService3"
+                inputVariable="varNotificationReq" outputVariable="varNotificationResponse"
+                operation="sendEmailNotification"/>
+      </sequence>
+    </scope>
+      <sequence name="Sequence1">
+        <assign name="SMSParamsAssign">
+          <copy>
+            <from>string('"Amado"')</from>
+            <to>$varNotificationReq.SMSPayload/ns1:From</to>
+          </copy>
+          <copy>
+            <from>string('mensagem automatica')</from>
+            <to>$varNotificationReq.SMSPayload/ns1:Content/ns1:ContentBody</to>
+          </copy>
+          <copy>
+            <from>string('text/plain')</from>
+            <to>$varNotificationReq.SMSPayload/ns1:Content/ns1:MimeType</to>
+          </copy>
+          <copy>
+            <from>string('Teste')</from>
+            <to>$varNotificationReq.SMSPayload/ns1:Subject</to>
+          </copy>
+          <copy>
+            <from>string('+351917841030')</from>
+            <to>$varNotificationReq.SMSPayload/ns1:To</to>
+          </copy>
+        </assign>
+        <invoke name="InvokeNotificationService" portType="ns1:NotificationService" partnerLink="NotificationService1"
+                inputVariable="varNotificationReq" outputVariable="varNotificationResponse"
+                operation="sendSMSNotification"/>
+      </sequence>
+  </sequence>
+</process>

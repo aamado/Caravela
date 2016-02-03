@@ -1,0 +1,411 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:templateEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:con1="http://www.bea.com/wli/sb/stages/transform/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config" xmlns:con3="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con4="http://www.bea.com/wli/sb/stages/alert/config" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+    <con:coreEntry>
+        <!--<con:binding type="Any XML"/>-->
+        <con:binding type="SOAP" isSoap12="false" xsi:type="con:AnyWsdlSoapBindingType"/>
+    </con:coreEntry>
+    <con:router errorHandler="error-7f000001.N345a6d0c.0.14f6457c7d0.N7f0c">
+        <con:pipeline type="error" name="error-7f000001.N345a6d0c.0.14f6457c7d0.N7f0c">
+            <con:stage id="_StageId-7f000001.N345a6d0c.0.14f6457c7d0.N7f0b" name="Exception Management">
+                <con:context/>
+                <con:actions>
+                    <con4:alert>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7f91</con2:id>
+                        <con4:destination ref="CaravelaTemplates/AlertDestinations/AD_ErrorHandler"/>
+                        <con4:severity>critical</con4:severity>
+                        <con4:payload>
+                            <con2:xqueryText>$fault</con2:xqueryText>
+                        </con4:payload>
+                    </con4:alert>
+                    <con3:report>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7f5e</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$fault</con2:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>ECID</con3:key>
+                            <con3:varName>report</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./ecid</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                    <con3:report>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7f29</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$header</con2:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>ECID</con3:key>
+                            <con3:varName>report</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./ecid</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                    <con3:report>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7f26</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>ECID</con3:key>
+                            <con3:varName>report</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./ecid</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                    <con3:log>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7ef3</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$header</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                    <con3:log>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7eef</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$inbound</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                    <con3:log>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7eec</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$outbound</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                    <con3:log>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7ee9</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                    <con3:log>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7ee6</con2:id>
+                        <con3:logLevel>debug</con3:logLevel>
+                        <con3:expr>
+                            <con2:xqueryText>$fault</con2:xqueryText>
+                        </con3:expr>
+                    </con3:log>
+                </con:actions>
+            </con:stage>
+            <con:placeholder-node id="PlaceholderID_7f000001.N345a6d0c.0.14f6457c7d0.N7f0a" name="ErrorHandlingCustomisedStage_1">
+                <con:comment>To be edited with Error handling extra activites</con:comment>
+            </con:placeholder-node>
+        </con:pipeline>
+        <con:pipeline type="request" name="request-7f000001.N345a6d0c.0.14f6457c7d0.N7ed6">
+            <con:stage id="_StageId-7f000001.N345a6d0c.0.14f6457c7d0.N7ed4" name="RequestTrackingStage">
+                <con:context/>
+                <con:actions>
+                    <con1:javaCallout varName="ecid">
+                        <con2:id>_ActionId-7f000001.N345a6d0c.0.14f6457c7d0.N7e66</con2:id>
+                        <con1:archive ref="CaravelaTemplates/wls-api"/>
+                        <con1:className>weblogic.diagnostics.context.DiagnosticContextHelper</con1:className>
+                        <con1:method>public static java.lang.String getContextId()</con1:method>
+                        <con1:return-param-as-ref>false</con1:return-param-as-ref>
+                    </con1:javaCallout>
+                    <con1:assign varName="report">
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7ffe</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>&lt;report>
+  &lt;ecid>$ecid&lt;/ecid>
+&lt;/report></con2:xqueryText>
+                        </con1:expr>
+                    </con1:assign>
+                    <con1:assign varName="operationSH">
+                        <con2:id>_ActionId-N3f5754ff.1bb6aa98.0.150a9cf5391.N7f91</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>$inbound/ctx:service/ctx:operation/text()</con2:xqueryText>
+                        </con1:expr>
+                    </con1:assign>
+                    <con1:replace varName="report" contents-only="true">
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7ffb</con2:id>
+                        <con1:location>
+                            <con2:xpathText>./ecid</con2:xpathText>
+                        </con1:location>
+                        <con1:expr>
+                            <con2:xqueryText>$ecid</con2:xqueryText>
+                        </con1:expr>
+                    </con1:replace>
+                    <con3:report>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7ff8</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>$body</con2:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>ECID</con3:key>
+                            <con3:varName>report</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./ecid</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-7f000001.5e329846.0.1528e4462aa.N8000" name="SendToNotificationEngine">
+                <con:context/>
+                <con:actions>
+                    <con4:alert>
+                        <con2:id>_ActionId-7f000001.5e329846.0.1528e4462aa.N7ffd</con2:id>
+                        <con4:destination ref="CaravelaTemplates/AlertDestinations/AD_NotificationEngine"/>
+                        <con4:severity>normal</con4:severity>
+                    </con4:alert>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-N3f5754ff.197387d.0.15100a39a69.N7fe2" name="CopyOriginalBodyMsgStage">
+                <con:context/>
+                <con:actions>
+                    <con1:assign varName="originalBodyBackupSH">
+                        <con2:id>_ActionId-N3f5754ff.N21b9ce6e.0.151019251c5.N7fc9</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>$body/*</con2:xqueryText>
+                        </con1:expr>
+                    </con1:assign>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-N3f5754ff.N21b9ce6e.0.151019251c5.N7faf" name="CopyHttpHeadersToInternalVarsStage">
+                <con:context/>
+                <con:actions>
+                    <con1:ifThenElse>
+                        <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7daa</con2:id>
+                        <con1:case id="_BranchId-N3f5754ff.N2f47a69a.0.15102174194.N7da9">
+                            <con1:condition>
+                                <con2:xqueryText>fn:string-length(fn:upper-case($inbound/ctx:transport/ctx:request/tp:headers/tp:user-header[@name= 'integrationPattern']/@value)) > 0</con2:xqueryText>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:assign varName="param_integrationPattern_SH">
+                                    <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7da8</con2:id>
+                                    <con1:expr>
+                                        <con2:xqueryText>fn:upper-case($inbound/ctx:transport/ctx:request/tp:headers/tp:user-header[@name= 'integrationPattern']/@value)</con2:xqueryText>
+                                    </con1:expr>
+                                </con1:assign>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:default>
+                            <con1:assign varName="param_integrationPattern_SH">
+                                <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7da7</con2:id>
+                                <con1:expr>
+                                    <con2:xqueryText>'SYNC'</con2:xqueryText>
+                                </con1:expr>
+                            </con1:assign>
+                        </con1:default>
+                    </con1:ifThenElse>
+                    <con1:ifThenElse>
+                        <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7de8</con2:id>
+                        <con1:case id="_BranchId-N3f5754ff.N2f47a69a.0.15102174194.N7de7">
+                            <con1:condition>
+                                <con2:xqueryText>fn:string-length(fn:upper-case($inbound/ctx:transport/ctx:request/tp:headers/tp:user-header[@name= 'source']/@value)) > 0</con2:xqueryText>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:assign varName="param_source_SH">
+                                    <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7de6</con2:id>
+                                    <con1:expr>
+                                        <con2:xqueryText>fn:upper-case($inbound/ctx:transport/ctx:request/tp:headers/tp:user-header[@name= 'source']/@value)</con2:xqueryText>
+                                    </con1:expr>
+                                </con1:assign>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:default>
+                            <con1:assign varName="param_source_SH">
+                                <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7de5</con2:id>
+                                <con1:expr>
+                                    <con2:xqueryText>'noDefaultSourceAppDefined'</con2:xqueryText>
+                                </con1:expr>
+                            </con1:assign>
+                        </con1:default>
+                    </con1:ifThenElse>
+                    <con1:ifThenElse>
+                        <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7e26</con2:id>
+                        <con1:case id="_BranchId-N3f5754ff.N2f47a69a.0.15102174194.N7e25">
+                            <con1:condition>
+                                <con2:xqueryText>fn:string-length(fn:upper-case($inbound/ctx:transport/ctx:request/tp:headers/tp:user-header[@name= 'target']/@value)) > 0</con2:xqueryText>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:assign varName="param_target_SH">
+                                    <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7e24</con2:id>
+                                    <con1:expr>
+                                        <con2:xqueryText>fn:upper-case($inbound/ctx:transport/ctx:request/tp:headers/tp:user-header[@name= 'target']/@value)</con2:xqueryText>
+                                    </con1:expr>
+                                </con1:assign>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:default>
+                            <con1:assign varName="param_target_SH">
+                                <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7e23</con2:id>
+                                <con1:expr>
+                                    <con2:xqueryText>'NoDefaultTargetAppDefined'</con2:xqueryText>
+                                </con1:expr>
+                            </con1:assign>
+                        </con1:default>
+                    </con1:ifThenElse>
+                    <con1:ifThenElse>
+                        <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7e64</con2:id>
+                        <con1:case id="_BranchId-N3f5754ff.N2f47a69a.0.15102174194.N7e63">
+                            <con1:condition>
+                                <con2:xqueryText>fn:string-length(fn:upper-case($inbound/ctx:transport/ctx:request/tp:headers/tp:user-header[@name= 'complementaryMessage']/@value)) > 0</con2:xqueryText>
+                            </con1:condition>
+                            <con1:actions>
+                                <con1:assign varName="param_Message_SH">
+                                    <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7e62</con2:id>
+                                    <con1:expr>
+                                        <con2:xqueryText>fn:upper-case($inbound/ctx:transport/ctx:request/tp:headers/tp:user-header[@name= 'complementaryMessage']/@value)</con2:xqueryText>
+                                    </con1:expr>
+                                </con1:assign>
+                            </con1:actions>
+                        </con1:case>
+                        <con1:default>
+                            <con1:assign varName="param_Message_SH">
+                                <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7e61</con2:id>
+                                <con1:expr>
+                                    <con2:xqueryText>'NoComplementaryMessageDefined'</con2:xqueryText>
+                                </con1:expr>
+                            </con1:assign>
+                        </con1:default>
+                    </con1:ifThenElse>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-N3f5754ff.N2f47a69a.0.15102174194.N7cb1" name="AssignDefaultValuesToOtherNonHttpParamsStage">
+                <con:comment>Assign http headers to internal vars, validating first if they are properly sent. If not, default values are inserted.</con:comment>
+                <con:context/>
+                <con:actions>
+                    <con1:assign varName="param_processURI_SH">
+                        <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7cae</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>'ProcessURINotDefined'</con2:xqueryText>
+                        </con1:expr>
+                    </con1:assign>
+                    <con1:assign varName="param_Domain_SH">
+                        <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7cab</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>'DomainNotDefined'</con2:xqueryText>
+                        </con1:expr>
+                    </con1:assign>
+                    <con1:assign varName="param_Process_SH">
+                        <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7ca8</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>'ProcessNotDefined'</con2:xqueryText>
+                        </con1:expr>
+                    </con1:assign>
+                    <con1:assign varName="param_Step_SH">
+                        <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7ca5</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>0</con2:xqueryText>
+                        </con1:expr>
+                    </con1:assign>
+                    <con1:assign varName="param_DomainFault_SH">
+                        <con2:id>_ActionId-N3f5754ff.N2f47a69a.0.15102174194.N7c9f</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>'DomainFaultNotDefined'</con2:xqueryText>
+                        </con1:expr>
+                    </con1:assign>
+                </con:actions>
+            </con:stage>
+            <con:stage id="_StageId-N3f5754ff.N21b9ce6e.0.151019251c5.N7fb4" name="ReplaceBodyMsgWithCDMStage">
+                <con:context/>
+                <con:actions>
+                    <con1:replace varName="body" contents-only="true">
+                        <con2:id>_ActionId-N3f5754ff.N21b9ce6e.0.151019251c5.N7fb1</con2:id>
+                        <con1:location>
+                            <con2:xpathText>.</con2:xpathText>
+                        </con1:location>
+                        <con1:expr>
+                            <con2:xqueryTransform>
+                                <con2:resource ref="CaravelaTemplates/Resources/Transformations/TransformABMToCaravelaCDM"/>
+                                <con2:param name="processURI">
+                                    <con2:path>$param_processURI_SH</con2:path>
+                                </con2:param>
+                                <con2:param name="traceDomain">
+                                    <con2:path>$param_Domain_SH</con2:path>
+                                </con2:param>
+                                <con2:param name="integrationPattern">
+                                    <con2:path>$param_integrationPattern_SH</con2:path>
+                                </con2:param>
+                                <con2:param name="traceStep">
+                                    <con2:path>$param_Step_SH</con2:path>
+                                </con2:param>
+                                <con2:param name="ecid">
+                                    <con2:path>$ecid</con2:path>
+                                </con2:param>
+                                <con2:param name="operation">
+                                    <con2:path>$operationSH</con2:path>
+                                </con2:param>
+                                <con2:param name="source">
+                                    <con2:path>$param_source_SH</con2:path>
+                                </con2:param>
+                                <con2:param name="traceMessage">
+                                    <con2:path>$param_Message_SH</con2:path>
+                                </con2:param>
+                                <con2:param name="traceProcess">
+                                    <con2:path>$param_Process_SH</con2:path>
+                                </con2:param>
+                                <con2:param name="inputBody">
+                                    <con2:path>$originalBodyBackupSH</con2:path>
+                                </con2:param>
+                                <con2:param name="target">
+                                    <con2:path>$param_target_SH</con2:path>
+                                </con2:param>
+                                <con2:param name="traceDomainFault">
+                                    <con2:path>$param_DomainFault_SH</con2:path>
+                                </con2:param>
+                            </con2:xqueryTransform>
+                        </con1:expr>
+                    </con1:replace>
+                </con:actions>
+            </con:stage>
+            <con:placeholder-node id="PlaceholderID_7f000001.N345a6d0c.0.14f6457c7d0.N7ed1" name="RequestCustomisedStage_1">
+                <con:comment>To be edited with service needs request data</con:comment>
+            </con:placeholder-node>
+        </con:pipeline>
+        <con:pipeline type="response" name="response-7f000001.N345a6d0c.0.14f6457c7d0.N7ed5">
+            <con:stage id="_StageId-7f000001.N345a6d0c.0.14f6457c7d0.N7ed3" name="ResponseTrackingStage">
+                <con:context/>
+                <con:actions>
+                    <con3:report>
+                        <con2:id>_ActionId-N3f575480.N53d6badf.0.14f6ec96ec9.N7fc4</con2:id>
+                        <con3:expr>
+                            <con2:xqueryText>fn:concat($header, $body)</con2:xqueryText>
+                        </con3:expr>
+                        <con3:labels>
+                            <con3:key>ECID</con3:key>
+                            <con3:varName>report</con3:varName>
+                            <con3:value>
+                                <con2:xpathText>./ecid</con2:xpathText>
+                            </con3:value>
+                        </con3:labels>
+                    </con3:report>
+                </con:actions>
+            </con:stage>
+            <con:placeholder-node id="PlaceholderID_7f000001.N345a6d0c.0.14f6457c7d0.N7ed0" name="ResponseCustomisedStage_1">
+                <con:comment>To be edited with service needs request data</con:comment>
+            </con:placeholder-node>
+        </con:pipeline>
+        <con:flow>
+            <con:pipeline-node name="MainPipelinePairNode">
+                <con:request>request-7f000001.N345a6d0c.0.14f6457c7d0.N7ed6</con:request>
+                <con:response>response-7f000001.N345a6d0c.0.14f6457c7d0.N7ed5</con:response>
+            </con:pipeline-node>
+            <con:placeholder-node id="PlaceholderID_7f000001.N345a6d0c.0.14f6457c7d0.N7ecc" name="RoutingNodes">
+                <con:comment>To be edited with providing business service details</con:comment>
+            </con:placeholder-node>
+        </con:flow>
+        <con:shared-variables>
+            <con:variable>ecid</con:variable>
+            <con:variable>operationSH</con:variable>
+            <con:variable>originalBodyBackupSH</con:variable>
+            <con:variable>param_operation_SH</con:variable>
+            <con:variable>param_processURI_SH</con:variable>
+            <con:variable>param_integrationPattern_SH</con:variable>
+            <con:variable>param_source_SH</con:variable>
+            <con:variable>param_target_SH</con:variable>
+            <con:variable>param_Domain_SH</con:variable>
+            <con:variable>param_Process_SH</con:variable>
+            <con:variable>param_Step_SH</con:variable>
+            <con:variable>param_Message_SH</con:variable>
+            <con:variable>param_DomainFault_SH</con:variable>
+        </con:shared-variables>
+    </con:router>
+</con:templateEntry>

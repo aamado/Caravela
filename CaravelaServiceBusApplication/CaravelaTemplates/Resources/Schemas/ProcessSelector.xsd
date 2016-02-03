@@ -1,0 +1,30 @@
+<xsd:schema targetNamespace="http://www.novabase.pt/Caravela/Oracle/ProcessSelector" elementFormDefault="qualified" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://www.novabase.pt/Caravela/Oracle/ProcessSelector" xmlns:ct="http://www.novabase.pt/Caravela/Oracle/CDM/CommonTypes">
+ 
+  <!--<xsd:import namespace="http://www.novabase.pt/Caravela/Oracle/CDM/CommonTypes" schemaLocation="oramds:/apps/SOA/Schemas/CaravelaCDM.xsd"/>-->
+  <xsd:import namespace="http://www.novabase.pt/Caravela/Oracle/CDM/CommonTypes" schemaLocation="../../../CaravelaBaseProject/SOA/Schemas/CaravelaCDM.xsd"/>
+  
+    <xsd:element name="Request">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="RequestCDM" type="ct:RequestCDMType"/>
+                <xsd:element name="BusinessApplicationRequest" type="ct:BusinessApplicationRequestType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Response">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ResponseCDM" type="ct:ResponseCDMType"/>
+                <xsd:element name="BusinessApplicationResponse" type="ct:BusinessApplicationResponseType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Fault">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="FaultCDM" type="ct:FaultStatusType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+  
+</xsd:schema>

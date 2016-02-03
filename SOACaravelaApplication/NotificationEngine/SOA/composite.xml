@@ -11,5 +11,24 @@
            xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy"
            xmlns:ui="http://xmlns.oracle.com/soa/designer/"
            xmlns:sca-ext="http://xmlns.oracle.com/sca/1.0-ext">
+  <import namespace="http://xmlns.oracle.com/ias/pcbpel/NotificationService"
+          location="oramds:/soa/shared/workflow/NotificationService.wsdl" importType="wsdl"/>
   <property name="productVersion" type="xs:string" many="false">12.1.3.0.0</property>
+  <component name="BPEL_NotificationEngine" version="2.0">
+    <implementation.bpel src="BPEL/BPEL_NotificationEngine.bpel"/>
+    <componentType>
+      <reference name="NotificationService3" ui:wsdlLocation="oramds:/soa/shared/workflow/NotificationService.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.interface(NotificationService)"/>
+      </reference>
+    </componentType>
+  </component>
+  <reference name="NotificationService3" ui:wsdlLocation="oramds:/soa/shared/workflow/NotificationService.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.interface(NotificationService)"/>
+    <binding.wsif port="http://xmlns.oracle.com/ias/pcbpel/NotificationService#wsdl.endpoint(NotificationService/JavaPort)"
+                  location="oramds:/soa/shared/workflow/NotificationService.wsdl"/>
+  </reference>
+  <wire>
+    <source.uri>BPEL_NotificationEngine/NotificationService3</source.uri>
+    <target.uri>NotificationService3</target.uri>
+  </wire>
 </composite>

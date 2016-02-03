@@ -1,0 +1,15 @@
+<wsdl:definitions targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/CaravelaServiceBusApplication/ConfigurationComponent/getConfigurationValues" name="getConfigurationValues-concrete" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+    <wsdl:import location="getConfigurationValues.wsdl" namespace="http://xmlns.oracle.com/pcbpel/adapter/db/CaravelaServiceBusApplication/ConfigurationComponent/getConfigurationValues"/>
+    <wsdl:binding name="getConfigurationValues_ptt-binding" type="get:getConfigurationValues_ptt" xmlns:get="http://xmlns.oracle.com/pcbpel/adapter/db/CaravelaServiceBusApplication/ConfigurationComponent/getConfigurationValues">
+        <soap:binding style="document" transport="http://www.bea.com/wli/sb/transports/jca"/>
+        <wsdl:operation name="getConfigurationValues">
+            <soap:operation soapAction="getConfigurationValues"/>
+            <wsdl:input>
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal"/>
+            </wsdl:output>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

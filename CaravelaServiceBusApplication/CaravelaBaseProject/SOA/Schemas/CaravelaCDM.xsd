@@ -1,0 +1,146 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:ct="http://www.novabase.pt/Caravela/Oracle/CDM/CommonTypes"
+    targetNamespace="http://www.novabase.pt/Caravela/Oracle/CDM/CommonTypes"
+    elementFormDefault="qualified">
+
+
+    <xsd:element name="Request">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="RequestCDM" type="ct:RequestCDMType"/>
+                <xsd:element name="BusinessApplicationRequest"
+                    type="ct:BusinessApplicationRequestType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Response">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="ResponseCDM" type="ct:ResponseCDMType"/>
+                <xsd:element name="BusinessApplicationResponse"
+                    type="ct:BusinessApplicationResponseType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+    <xsd:element name="Fault">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="FaultCDM" type="ct:FaultStatusType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="RequestCDM" type="ct:RequestCDMType"/>
+    <xsd:complexType name="RequestCDMType">
+        <xsd:sequence>
+            <xsd:element name="ecid" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="version" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="timestamp" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="processURI" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="integrationPattern" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="operation" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="source" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="target" type="xsd:string" minOccurs="0"/>
+            <xsd:element name="DomainTraceLog" maxOccurs="unbounded" type="ct:DomainTraceLogType"
+                minOccurs="0"/>
+            <!--
+            <xsd:element name="TableProcess" maxOccurs="unbounded" type="ct:TableProcessType"
+                minOccurs="0"/>
+                -->
+            <xsd:sequence/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="BusinessApplicationRequestType">
+        <xsd:sequence>
+            <xsd:any namespace="http://www.w3.org/1999/xhtml" minOccurs="1" maxOccurs="unbounded"
+                processContents="skip"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:element name="ResponseCDM" type="ct:ResponseCDMType"/>
+    <xsd:complexType name="ResponseCDMType">
+        <xsd:sequence>
+            <xsd:element name="ecid" type="xsd:string"/>
+            <xsd:element name="DomainTraceLog" maxOccurs="unbounded" type="ct:DomainTraceLogType"
+                minOccurs="0"/>
+            <!--
+            <xsd:element name="TableProcess" maxOccurs="unbounded" type="ct:TableProcessType"
+                minOccurs="0"/>
+                -->
+            <xsd:choice>
+                <xsd:element name="BusinessResponse" type="ct:BusinessStatusType"/>
+                <xsd:element name="Fault" type="ct:FaultStatusType"/>
+            </xsd:choice>
+            <xsd:sequence/>
+        </xsd:sequence>
+    </xsd:complexType>
+
+    <xsd:complexType name="BusinessApplicationResponseType">
+        <xsd:sequence>
+            <xsd:any namespace="http://www.w3.org/1999/xhtml" minOccurs="1" maxOccurs="unbounded"
+                processContents="skip"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="FaultStatusType">
+        <xsd:sequence>
+            <xsd:element name="code" type="xsd:string"/>
+            <xsd:element name="summary" type="xsd:string"/>
+            <xsd:element name="detail" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BusinessStatusType">
+        <xsd:sequence>
+            <xsd:element name="code" type="xsd:string"/>
+            <xsd:element name="summary" type="xsd:string"/>
+            <xsd:element name="detail" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="DomainTraceLogType">
+        <xsd:sequence>
+            <xsd:element name="Domain" type="xsd:string"/>
+            <xsd:element name="Process" type="xsd:string"/>
+            <xsd:element name="Step" type="xsd:int"/>
+            <xsd:element name="Message" type="xsd:string"/>
+            <xsd:element name="DomainFault" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <!--
+    <xsd:complexType name="TableProcessType">
+        <xsd:sequence>
+            <xsd:element name="PROCESS_ID" type="xsd:string"/>
+            <xsd:element name="NAME" type="xsd:string"/>
+            <xsd:element name="DESCRIPTION" type="xsd:string"/>
+            <xsd:element name="URI" type="xsd:string"/>
+            <xsd:element name="NAMESPACE" type="xsd:string"/>
+            <xsd:element name="TYPE" type="xsd:string"/>
+            <xsd:element name="PROTOCOL" type="xsd:string"/>
+            <xsd:element name="ACK_TYPE" type="xsd:string"/>
+            <xsd:element name="RESPONSE_TYPE" type="xsd:string"/>
+            <xsd:element name="RESPONSE_URI" type="xsd:string"/>
+            <xsd:element name="TIMEOUT" type="xsd:string"/>
+            <xsd:element name="STATUS" type="xsd:string"/>
+            <xsd:element name="APPLICATION" type="xsd:string"/>
+            <xsd:element name="GROUP_NAMESPACE" type="xsd:string"/>
+            <xsd:element name="CREATION_DATE" type="xsd:string"/>
+            <xsd:element name="PROPERTIES" type="xsd:string"/>
+            <xsd:element name="ON_START_NOTIFICATION" type="xsd:string"/>
+            <xsd:element name="ON_FINISH_NOTIFICATION" type="xsd:string"/>
+            <xsd:element name="VERSION" type="xsd:string"/>
+            <xsd:element name="EMPTY_FREE_ATTRIBUTE" type="xsd:string"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    -->
+    <xsd:complexType name="BusinessRequestOperationType">
+        <xsd:sequence>
+            <xsd:any namespace="http://www.w3.org/1999/xhtml" minOccurs="1" maxOccurs="unbounded"
+                processContents="skip"/>
+        </xsd:sequence>
+    </xsd:complexType>
+    <xsd:complexType name="BusinessResponseOperationType">
+        <xsd:sequence>
+            <xsd:any namespace="http://www.w3.org/1999/xhtml" minOccurs="1" maxOccurs="unbounded"
+                processContents="skip"/>
+        </xsd:sequence>
+    </xsd:complexType>
+</xsd:schema>

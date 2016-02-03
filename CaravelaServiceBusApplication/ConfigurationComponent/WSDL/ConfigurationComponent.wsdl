@@ -1,0 +1,50 @@
+<?xml version= '1.0' encoding= 'UTF-8' ?>
+<wsdl:definitions
+     name="ConfigurationComponent"
+     targetNamespace="http://www.novabase.pt/Caravela/Oracle/ConfigurationComponent"
+     xmlns:tns="http://www.novabase.pt/Caravela/Oracle/ConfigurationComponent"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+     xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+     xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+     xmlns:wsaws="http://www.w3.org/2005/08/addressing"
+    >
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="http://www.novabase.pt/Caravela/Oracle/ConfigurationComponent" schemaLocation="../Schemas/ConfigurationComponent.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+    
+    <wsdl:message name="requestMessage">
+        <wsdl:part name="body" element="tns:Request"/>
+    </wsdl:message>
+    <wsdl:message name="responseMessage">
+        <wsdl:part name="body" element="tns:Response"/>
+    </wsdl:message>
+    <wsdl:message name="faultMessage">
+        <wsdl:part name="fault" element="tns:Fault"/>
+    </wsdl:message>
+    
+    <wsdl:portType name="configurationcomponent_ptt">
+        <wsdl:operation name="processSelect">
+            <wsdl:input message="tns:requestMessage"/>
+            <wsdl:output message="tns:responseMessage"/>
+            <wsdl:fault name="configurationcomponentfault" message="tns:faultMessage"/>
+        </wsdl:operation>
+    </wsdl:portType>
+    
+    <wsdl:binding name="configurationcomponent_bind" type="tns:configurationcomponent_ptt">
+        <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="processSelect">
+            <soap:operation style="document" soapAction="processSelect"/>
+            <wsdl:input>
+                <soap:body use="literal" namespace="http://www.novabase.pt/Caravela/Oracle/ConfigurationComponent"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="http://www.novabase.pt/Caravela/Oracle/ConfigurationComponent"/>
+            </wsdl:output>
+            <wsdl:fault name="configurationcomponentfault">
+                <soap:fault name="configurationcomponentfault" use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+</wsdl:definitions>

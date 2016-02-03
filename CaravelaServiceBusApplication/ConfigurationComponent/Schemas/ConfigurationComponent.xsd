@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="windows-1252" ?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:cc="http://www.novabase.pt/Caravela/Oracle/ConfigurationComponent"
+            targetNamespace="http://www.novabase.pt/Caravela/Oracle/ConfigurationComponent"
+            xmlns:ct="http://www.novabase.pt/Caravela/Oracle/CDM/CommonTypes"
+            elementFormDefault="qualified">
+
+    <xsd:import namespace="http://www.novabase.pt/Caravela/Oracle/CDM/CommonTypes" schemaLocation="../../CaravelaTemplates/Resources/Schemas/CaravelaCDM.xsd"/>
+            
+    <xsd:element name="Request">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="key" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="Response">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="value" type="xsd:string"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+    <xsd:element name="Fault">
+        <xsd:complexType>
+            <xsd:sequence>
+                <xsd:element name="FaultCDM" type="ct:FaultStatusType"/>
+            </xsd:sequence>
+        </xsd:complexType>
+    </xsd:element>
+
+</xsd:schema>

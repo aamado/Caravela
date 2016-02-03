@@ -1,0 +1,13 @@
+<adapter-config name="getProcessMetadata" adapter="db" wsdlLocation="../WSDLs/getProcessMetadata.wsdl" xmlns="http://platform.integration.oracle/blocks/adapter/fw/metadata">
+  
+  <connection-factory UIConnectionName="Caravela" location="eis/DB/Caravela"/>
+  <endpoint-interaction portType="getProcessMetadata_ptt" operation="getProcessMetadata">
+    <interaction-spec className="oracle.tip.adapter.db.DBStoredProcedureInteractionSpec">
+      <property name="SchemaName" value="ORA_CARAVELA"/>
+      <property name="PackageName" value="TAB_PROCESS"/>
+      <property name="ProcedureName" value="GETPROCESS"/>
+      <property name="GetActiveUnitOfWork" value="false"/>
+    </interaction-spec>
+  </endpoint-interaction>
+
+</adapter-config>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:templateEntry xmlns:con="http://www.bea.com/wli/sb/pipeline/config" xmlns:con1="http://www.bea.com/wli/sb/stages/logging/config" xmlns:con2="http://www.bea.com/wli/sb/stages/config">
+    <con:coreEntry/>
+    <con:router errorHandler="error-7f000001.N35e28504.0.14d29499812.N7e3e">
+        <con:pipeline type="error" name="error-7f000001.N35e28504.0.14d29499812.N7e3e">
+            <con:stage id="_StageId-7f000001.N35e28504.0.14d29499812.N7e3d" name="Error Handler">
+                <con:context/>
+                <con:actions>
+                    <con1:report>
+                        <con2:id>_ActionId-7f000001.N35e28504.0.14d29499812.N7e3a</con2:id>
+                        <con1:expr>
+                            <con2:xqueryText>$ecid</con2:xqueryText>
+                        </con1:expr>
+                        <con1:labels>
+                            <con1:key>ECID</con1:key>
+                            <con1:varName>ecid</con1:varName>
+                            <con1:value>
+                                <con2:xpathText>.</con2:xpathText>
+                            </con1:value>
+                        </con1:labels>
+                    </con1:report>
+                </con:actions>
+            </con:stage>
+        </con:pipeline>
+        <con:flow>
+            <con:route-node id="_RouteId-7f000001.N35e28504.0.14d29499812.N7ecb" name="RouteNode1">
+                <con:context/>
+                <con:actions>
+                    <con:placeholder-node id="PlaceholderID_7f000001.N35e28504.0.14d29499812.N7eca"/>
+                </con:actions>
+            </con:route-node>
+        </con:flow>
+    </con:router>
+</con:templateEntry>

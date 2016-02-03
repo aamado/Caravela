@@ -1,2 +1,13 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Faults/>
+<Faults>
+   <Fault>
+      <severity>error</severity>
+      <loc/>
+      <line>128</line>
+      <col/>
+      <file>BPEL/BPEL_NotificationEngine.bpel</file>
+      <name>BPEL/BPEL_NotificationEngine.bpel</name>
+      <fix/>
+      <msg>Element 'sequence' not expected.</msg>
+   </Fault>
+</Faults>

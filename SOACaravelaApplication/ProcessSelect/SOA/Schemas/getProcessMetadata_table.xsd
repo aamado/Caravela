@@ -1,0 +1,59 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<xs:schema targetNamespace="http://xmlns.oracle.com/pcbpel/adapter/db/top/getProcessMetadata" xmlns="http://xmlns.oracle.com/pcbpel/adapter/db/top/getProcessMetadata" elementFormDefault="qualified" attributeFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+   <xs:element name="ProcessCollection" type="ProcessCollection"/>
+   <xs:complexType name="ProcessCollection">
+      <xs:sequence>
+         <xs:element name="Process" type="Process" minOccurs="0" maxOccurs="unbounded"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:complexType name="Process">
+      <xs:sequence>
+         <xs:element name="processId" type="xs:decimal"/>
+         <xs:element name="name" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="description" type="string500" minOccurs="0" nillable="true"/>
+         <xs:element name="uri" type="string1000" minOccurs="0"/>
+         <xs:element name="namespace" type="string1000" minOccurs="0" nillable="true"/>
+         <xs:element name="type" type="xs:long" minOccurs="0" nillable="true"/>
+         <xs:element name="protocol" type="xs:long" minOccurs="0"/>
+         <xs:element name="ackType" type="xs:long" minOccurs="0"/>
+         <xs:element name="responseType" type="xs:long" minOccurs="0"/>
+         <xs:element name="responseUri" type="string1000" minOccurs="0" nillable="true"/>
+         <xs:element name="timeout" type="xs:long" minOccurs="0"/>
+         <xs:element name="status" type="xs:long" minOccurs="0"/>
+         <xs:element name="application" type="string200" minOccurs="0" nillable="true"/>
+         <xs:element name="groupNamespace" type="string200" minOccurs="0" nillable="true"/>
+         <xs:element name="creationDate" type="xs:dateTime" minOccurs="0" nillable="true"/>
+         <xs:element name="properties" type="xs:string" minOccurs="0" nillable="true"/>
+         <xs:element name="onStartNotification" type="string1" minOccurs="0" nillable="true"/>
+         <xs:element name="onFinishNotification" type="string1" minOccurs="0" nillable="true"/>
+         <xs:element name="version" type="xs:long" minOccurs="0" nillable="true"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:element name="getProcessMetadataSelect_processName_processURIInputParameters" type="getProcessMetadataSelect_processName_processURI"/>
+   <xs:complexType name="getProcessMetadataSelect_processName_processURI">
+      <xs:sequence>
+         <xs:element name="processName" type="xs:string" minOccurs="1" maxOccurs="1"/>
+         <xs:element name="processURI" type="xs:string" minOccurs="1" maxOccurs="1"/>
+      </xs:sequence>
+   </xs:complexType>
+   <xs:simpleType name="string500">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="500"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string1000">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="1000"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string200">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="200"/>
+      </xs:restriction>
+   </xs:simpleType>
+   <xs:simpleType name="string1">
+      <xs:restriction base="xs:string">
+         <xs:maxLength value="1"/>
+      </xs:restriction>
+   </xs:simpleType>
+</xs:schema>

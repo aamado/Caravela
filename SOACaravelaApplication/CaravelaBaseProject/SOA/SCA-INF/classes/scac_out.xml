@@ -1,2 +1,23 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<Faults/>
+<Faults>
+   <Fault>
+      <severity>error</severity>
+      <loc/>
+      <line>28</line>
+      <col/>
+      <file>BPEL/BPELProcessTemplate.bpel</file>
+      <name>BPEL/BPELProcessTemplate.bpel</name>
+      <fix/>
+      <msg>Element not completed: 'catchAll'</msg>
+   </Fault>
+   <Fault>
+      <severity>error</severity>
+      <loc/>
+      <line>31</line>
+      <col/>
+      <file>BPEL/BPELProcessTemplate.bpel</file>
+      <name>BPEL/BPELProcessTemplate.bpel</name>
+      <fix/>
+      <msg>Element not completed: 'sequence'</msg>
+   </Fault>
+</Faults>

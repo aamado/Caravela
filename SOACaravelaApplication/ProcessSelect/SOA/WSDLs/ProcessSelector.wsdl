@@ -3,7 +3,6 @@
      name="Process_Selector"
      targetNamespace="http://www.novabase.pt/Caravela/Oracle/ProcessSelector"
      xmlns:tns="http://www.novabase.pt/Caravela/Oracle/ProcessSelector"
-     xmlns:inp1="http://www.novabase.pt/Caravela/Oracle/CDM"
      xmlns:xsd="http://www.w3.org/2001/XMLSchema"
      xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
      xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
@@ -16,18 +15,18 @@
     >
     <wsdl:types>
         <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-            <xsd:import namespace="http://www.novabase.pt/Caravela/Oracle/CDM" schemaLocation="../Schemas/ProcessSelector.xsd"/>
+            <xsd:import namespace="http://www.novabase.pt/Caravela/Oracle/ProcessSelector" schemaLocation="../Schemas/ProcessSelector.xsd"/>
         </xsd:schema>
     </wsdl:types>
     
     <wsdl:message name="requestMessage">
-        <wsdl:part name="body" element="inp1:Request"/>
+        <wsdl:part name="body" element="tns:Request"/>
     </wsdl:message>
     <wsdl:message name="responseMessage">
-        <wsdl:part name="body" element="inp1:Response"/>
+        <wsdl:part name="body" element="tns:Response"/>
     </wsdl:message>
     <wsdl:message name="faultMessage">
-        <wsdl:part name="fault" element="inp1:Fault"/>
+        <wsdl:part name="fault" element="tns:Fault"/>
     </wsdl:message>
     
     <wsdl:portType name="processSelect_ptt">

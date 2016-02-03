@@ -11,5 +11,41 @@
            xmlns:orawsp="http://schemas.oracle.com/ws/2006/01/policy"
            xmlns:ui="http://xmlns.oracle.com/soa/designer/"
            xmlns:sca-ext="http://xmlns.oracle.com/sca/1.0-ext">
+  <import namespace="http://www.novabase.pt/Caravela/Oracle/ProcessSelector"
+          location="WSDLs/ProcessSelectorWrapper.wsdl" importType="wsdl"/>
+  <import namespace="http://xmlns.oracle.com/pcbpel/adapter/db/SOACaravelaApplication/ProcessSelect/getProcessMetadata"
+          location="WSDLs/getProcessMetadata.wsdl" importType="wsdl"/>
+  <service name="Direct_ProcessSelect" ui:wsdlLocation="WSDLs/ProcessSelectorWrapper.wsdl">
+    <interface.wsdl interface="http://www.novabase.pt/Caravela/Oracle/ProcessSelector#wsdl.interface(processSelect_ptt)"/>
+    <binding.direct/>
+  </service>
   <property name="productVersion" type="xs:string" many="false">12.1.3.0.0</property>
+  <component name="ProcessSelect" version="2.0">
+    <implementation.bpel src="BPEL/ProcessSelect.bpel"/>
+    <componentType>
+      <service name="processselect_client" ui:wsdlLocation="WSDLs/ProcessSelectorWrapper.wsdl">
+        <interface.wsdl interface="http://www.novabase.pt/Caravela/Oracle/ProcessSelector#wsdl.interface(processSelect_ptt)"/>
+      </service>
+      <reference name="getProcessMetadata" ui:wsdlLocation="WSDLs/getProcessMetadata.wsdl">
+        <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/SOACaravelaApplication/ProcessSelect/getProcessMetadata#wsdl.interface(getProcessMetadata_ptt)"/>
+      </reference>
+    </componentType>
+    <property name="bpel.config.transaction" type="xs:string" many="false">required</property>
+  </component>
+  <reference name="getProcessMetadata" ui:wsdlLocation="WSDLs/getProcessMetadata.wsdl">
+    <interface.wsdl interface="http://xmlns.oracle.com/pcbpel/adapter/db/SOACaravelaApplication/ProcessSelect/getProcessMetadata#wsdl.interface(getProcessMetadata_ptt)"/>
+    <binding.jca config="Adapters/getProcessMetadata_db.jca"/>
+    <property name="jca.retry.count" type="xs:int" many="false" override="may">4</property>
+    <property name="jca.retry.interval" type="xs:int" many="false" override="may">1</property>
+    <property name="jca.retry.backoff" type="xs:int" many="false" override="may">2</property>
+    <property name="jca.retry.maxInterval" type="xs:int" many="false" override="may">120</property>
+  </reference>
+  <wire>
+    <source.uri>Direct_ProcessSelect</source.uri>
+    <target.uri>ProcessSelect/processselect_client</target.uri>
+  </wire>
+  <wire>
+    <source.uri>ProcessSelect/getProcessMetadata</source.uri>
+    <target.uri>getProcessMetadata</target.uri>
+  </wire>
 </composite>
